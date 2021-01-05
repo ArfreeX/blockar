@@ -27,7 +27,8 @@ namespace VirtualObjects
         public void HandleNewObject(RaycastHit hit)
         {
             var hitObject = hit.collider.gameObject;
-            // oversimplification - assumes that object has the same dimmensions, for objects other than cube something smart must be figured out
+            // oversimplification - assumes that object has the same dimmensions,
+            // for objects other than cube something smart must be figured out
             var scalingFactor = hitObject.transform.localScale.x;
             var pos = hitObject.transform.position + scalingFactor * hit.normal;
             var hitPose = new Pose(pos, hit.transform.rotation);
@@ -54,6 +55,16 @@ namespace VirtualObjects
             objects.Remove(currentlySelected.GetInstanceID());
             Object.Destroy(currentlySelected);
             currentlySelected = null;
+        }
+
+        public GameObject GetCurrentlySelected()
+        {
+            return currentlySelected;
+        }
+
+        public Dictionary<int, GameObject> GetGameObjects()
+        {
+            return objects;
         }
     }
 }
